@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import './App.css';
 import Navbar from './Components/navbar';
 import { Page } from './Interface';
@@ -10,7 +10,11 @@ const Pages: {name: string, href: string}[]  = [
   }
 ]
 
-const App = (props: {pages: Array<Page>}) => {
+interface Props {
+  pages: Array<Page>;
+}
+
+const App:FC<Props> = ({pages}) => {
 
   return (
     <div className="App">

@@ -6,7 +6,11 @@ const Container = styled.div`
     background-color: #282c34;
 `;
 
-const Navbar = (props: {pages: Array<Page>}) => {
+interface Props {
+    pages: Array<Page>
+}
+
+const Navbar:FC<Props> = ({pages}) => {
     return(
         <Container>
             {pages.map((page: {name:string, href: string}) => {
