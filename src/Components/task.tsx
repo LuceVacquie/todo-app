@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Task } from '../Interface';
+import '../App.css';
 
 interface Props {
     task: Task
@@ -7,7 +8,14 @@ interface Props {
 
 const TodoTask = ({task}: Props) => {
     return(
-        <div>{task.taskName} {task.deadline}</div>
+        <div>
+            <div className='task'>
+               <span>{task.taskName}</span> 
+               <span>{task.deadline}</span> 
+            </div>
+            <button>X</button>
+        </div>
+        
     )
 }
 

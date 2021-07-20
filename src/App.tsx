@@ -36,7 +36,9 @@ const App:FC = () => {
           deadline={deadline}
         />
       </header>
-      <List todoList={todoList}/>
+      <div className="todoList">
+        <List todoList={todoList}/>
+      </div>
     </div>
   );
 }

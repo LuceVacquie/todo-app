@@ -1,7 +1,8 @@
 import React, { FC, ChangeEvent } from 'react'
+import '../App.css'
 
 interface Props {
-    handleChange: (event:ChangeEvent<HTMLInputEvent>) => void,
+    handleChange: (event:ChangeEvent<HTMLInputElement>) => void,
     addTask: () => void ,
     task: string,
     deadline: number
@@ -9,7 +10,7 @@ interface Props {
 
 const InputText:FC<Props> = ({ handleChange, addTask, task, deadline }) => {
     return (
-        <div>
+        <div className='inputs'>
             <input 
                 type='text' 
                 placeholder='Task' 
