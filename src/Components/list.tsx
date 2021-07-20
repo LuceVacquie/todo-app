@@ -1,16 +1,18 @@
-import React, { FC } from 'react';
+import React from 'react';
 import {Task} from '../Interface';
 import TodoTask from './task';
+import '../App.css';
 
 interface Props {
-    todoList: Task[]
+    todoList: Task[];
+    deleteTask(task:string): void;
 }
 
-const List = ({todoList} : Props) => {
+const List = ({todoList, deleteTask} : Props) => {
     return(
-        <div>
+        <div className="todoList">
             {todoList.map((task: Task, key:number) => {
-                return <TodoTask key={key} task={task}/>
+                return <TodoTask key={key} task={task} deleteTask={deleteTask}/>
             })}
         </div>
     )

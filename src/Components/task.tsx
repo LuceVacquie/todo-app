@@ -1,21 +1,22 @@
 import React from 'react';
 import { Task } from '../Interface';
 import '../App.css';
+import { VoidExpression } from 'typescript';
 
 interface Props {
-    task: Task
+    task: Task;
+    deleteTask(task:string): void;
 }
 
-const TodoTask = ({task}: Props) => {
+const TodoTask = ({task, deleteTask}: Props) => {
     return(
-        <div>
-            <div className='task'>
-               <span>{task.taskName}</span> 
-               <span>{task.deadline}</span> 
+        <div className='task'>
+            <div className='content'>
+                <span className='taskName'>{task.taskName}</span> 
+                <span className='deadline'>{task.deadline}</span> 
             </div>
-            <button>X</button>
+            <button onClick={() => deleteTask(task.taskName)}>X</button>
         </div>
-        
     )
 }
 

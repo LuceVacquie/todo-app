@@ -25,6 +25,12 @@ const App:FC = () => {
     setDeadline(0)
   }
 
+  const deleteTask = (taskNameToDelete: string): void => {
+    setTodoList(todoList.filter((task) => {
+      return task.taskName != taskNameToDelete
+    }))
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -36,9 +42,7 @@ const App:FC = () => {
           deadline={deadline}
         />
       </header>
-      <div className="todoList">
-        <List todoList={todoList}/>
-      </div>
+      <List todoList={todoList} deleteTask={deleteTask}/>
     </div>
   );
 }
