@@ -1,26 +1,44 @@
 import React, {FC} from 'react';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 import Navbar from './Components/navbar';
-import { Page } from './Interface';
+import TodoPage from './Pages/ToDo';
 
 const Pages: {name: string, href: string}[]  = [
   {
-      name: 'ToDo List',
-      href: '../Pages/ToDo'
+    name: 'Home',
+    href: '/'
+  },
+  {
+    name: 'ToDo List',
+    href: '/todo'
   }
 ]
 
-interface Props {
-  pages: Array<Page>;
-}
-
-const App:FC<Props> = ({pages}) => {
+const App:FC = () => {
 
   return (
-    <div className="App">
-      <Navbar pages={Pages}/>
-    </div>
+    <Router>
+
+      <Wrapper>
+        <Navbar pages={Pages}/>
+
+        <Switch>
+          <Route exact path='/todo' component={TodoPage}/>
+        </Switch>
+      </Wrapper>
+
+    </Router>
   );
 }
 
+//STYLED COMPONENTS
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+`;
+
 export default App;
+

@@ -1,5 +1,5 @@
-import React, { FC, ChangeEvent } from 'react'
-import '../App.css'
+import React, { FC, ChangeEvent } from 'react';
+import styled from 'styled-components';
 
 interface Props {
     handleChange: (event:ChangeEvent<HTMLInputElement>) => void,
@@ -10,7 +10,7 @@ interface Props {
 
 const InputText:FC<Props> = ({ handleChange, addTask, task, deadline }) => {
     return (
-        <div className='inputs'>
+        <Inputs>
             <input 
                 type='text' 
                 placeholder='Task' 
@@ -26,8 +26,12 @@ const InputText:FC<Props> = ({ handleChange, addTask, task, deadline }) => {
                 onChange={handleChange}
             />
             <button onClick={addTask}>ADD</button>
-        </div>
+        </Inputs>
     )
 }
+
+const Inputs = styled.div`
+    margin-top: 1rem;
+`;
 
 export default InputText;

@@ -1,5 +1,5 @@
 import React, { FC, ChangeEvent, useState } from 'react';
-import './App.css';
+import styled from 'styled-components';
 import InputText from '../Components/inputText';
 import List from '../Components/list';
 import {Task} from '../Interface';
@@ -32,8 +32,8 @@ const TodoPage:FC = () => {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <Wrapper>
+      <Header>
         Hello World
         <InputText 
           handleChange={handleChange} 
@@ -41,10 +41,28 @@ const TodoPage:FC = () => {
           task={task} 
           deadline={deadline}
         />
-      </header>
+      </Header>
       <List todoList={todoList} deleteTask={deleteTask}/>
-    </div>
+    </Wrapper>
   );
 }
+
+//STYLED COMPONENTS
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const Header = styled.header`
+  background-color: #282c34;
+  flex: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+`;
 
 export default TodoPage;

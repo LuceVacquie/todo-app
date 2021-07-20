@@ -1,7 +1,6 @@
 import React from 'react';
 import { Task } from '../Interface';
-import '../App.css';
-import { VoidExpression } from 'typescript';
+import styled from 'styled-components';
 
 interface Props {
     task: Task;
@@ -10,14 +9,41 @@ interface Props {
 
 const TodoTask = ({task, deleteTask}: Props) => {
     return(
-        <div className='task'>
-            <div className='content'>
-                <span className='taskName'>{task.taskName}</span> 
-                <span className='deadline'>{task.deadline}</span> 
+        <TaskWrapper>
+            <div>
+                <span>{task.taskName}</span> 
+                <span>{task.deadline}</span> 
             </div>
             <button onClick={() => deleteTask(task.taskName)}>X</button>
-        </div>
+        </TaskWrapper>
     )
 }
+
+//STYLED COMPONENTS
+const TaskWrapper = styled.div`
+    display: flex;
+    width: 80%;
+    div{
+        flex: 80%;
+        display: flex;
+        height: 100%;
+        padding-right: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+    span{
+        flex: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    button {
+        background-color: aqua;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 1rem;
+    }
+`;
 
 export default TodoTask;
