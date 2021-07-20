@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import Navbar from './Components/navbar';
 import TodoPage from './Pages/ToDo';
+import Quiz from './Pages/Quiz';
 
 const Pages: {name: string, href: string}[]  = [
   {
@@ -12,7 +13,11 @@ const Pages: {name: string, href: string}[]  = [
   {
     name: 'ToDo List',
     href: '/todo'
-  }
+  },
+  {
+    name: 'Quiz',
+    href: '/quiz'
+  },
 ]
 
 const App:FC = () => {
@@ -25,6 +30,7 @@ const App:FC = () => {
 
         <Switch>
           <Route exact path='/todo' component={TodoPage}/>
+          <Route exact path='/quiz' component={Quiz}/>
         </Switch>
       </Wrapper>
 
