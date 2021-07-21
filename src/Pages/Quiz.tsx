@@ -4,7 +4,7 @@ import QuestionCard from '../Components/questionCard';
 import { fetchQuizQuestions } from '../API';
 import { QuestionState, Difficulty } from '../API';
 
-interface AnswerObject {
+export interface AnswerObject {
     question: string;
     answer: string;
     correct: boolean;
@@ -64,12 +64,17 @@ const Quiz:FC = () => {
     }
 
     const nextQuestion = () => {
-
+        const nextQuestion = number + 1;
+        if (nextQuestion === TOTAL_QUESTIONS){
+            setGameOver(true)
+        } else {
+            setNumber(nextQuestion)
+        }
     }
 
     return(
-        <div>
-            <Title>Quiz</Title>
+        <Wrapper>
+            <Title>General Knowledge Quiz</Title>
 
             {gameOver || userAnswers.length === TOTAL_QUESTIONS?
                 <button onClick={startTrivia}>Start Quiz</button> 
@@ -77,7 +82,7 @@ const Quiz:FC = () => {
                 null
             }
 
-            {!gameOver? <p>Score: </p> : null}
+            {!gameOver? <p>Score: {score}</p> : null}
 
             {loading && <p>Loading questions...</p>}
 
@@ -97,16 +102,38 @@ const Quiz:FC = () => {
             && userAnswers.length === number + 1 
             && number !== TOTAL_QUESTIONS - 1 
             ?
-                <button onClick={nextQuestion}>Next question</button> 
+                <NextButton onClick={nextQuestion}>Next question</NextButton> 
             :
                 null
             }
             
-        </div>
+        </Wrapper>
     )
 }
 
 //STYLED COMPONENTS
-const Title = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #282c34;
+  color: whitesmoke;
+  text-align: center;
+`;
+
+const Title = styled.div`
+    font-size: 2rem;
+`;
+
+const NextButton = styled.button`
+    width: 90%;
+    height: 5%;
+    border-radius: 0.7rem;
+    border: none;
+    background-color: aqua;
+    margin-top: 1rem;
+`;
 
 export default Quiz;

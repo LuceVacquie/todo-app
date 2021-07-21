@@ -1,35 +1,43 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import {AnswerObject} from '../Pages/Quiz';
 
 interface Props {
     question: string;
     answers: string[];
-    callback: any;
-    userAnswer: any;
+    callback: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    userAnswer: AnswerObject | undefined;
     questionNumber: number;
     totalQuestions: number;
 }
 
 const QuestionCard:FC<Props> = ({question, answers, callback, userAnswer, questionNumber, totalQuestions}) => {
     return(
-        <div>
-            <Title>Question Card</Title>
+        <QuestionWrapper>
             <p>Question: {questionNumber} / {totalQuestions}</p>
             <p dangerouslySetInnerHTML={{__html: question}}/>
             <div>
                 {answers.map(answer => (
                     <div key = {answer}>
-                        <button disabled={userAnswer} value={answer} onClick={callback}>
+                        <button disabled={userAnswer ? true : false} value={answer} onClick={callback}>
                             <span dangerouslySetInnerHTML={{__html: answer}}/>
                         </button>
                     </div>
                 ))}
             </div>
-        </div>
+        </QuestionWrapper>
     )
 }
 
 //STYLED COMPONENTS
-const Title = styled.div``;
+const QuestionWrapper = styled.div`
+    background-color: #f5f5f5bf;
+    display: flex;
+    flex-direction: column;
+    color: #282c34;
+    width: 80%;
+    padding: 2rem;
+    border-radius: 2rem;
+`;
 
 export default QuestionCard;
