@@ -18,11 +18,15 @@ const QuestionCard:FC<Props> = ({question, answers, callback, userAnswer, questi
             <p dangerouslySetInnerHTML={{__html: question}}/>
             <div>
                 {answers.map(answer => (
-                    <div key = {answer}>
+                    <ButtonWrapper 
+                        key={answer} 
+                        correct={userAnswer?.correctAnswer === answer}
+                        userClicked={userAnswer?.answer === answer}
+                        >
                         <button disabled={userAnswer ? true : false} value={answer} onClick={callback}>
                             <span dangerouslySetInnerHTML={{__html: answer}}/>
                         </button>
-                    </div>
+                    </ButtonWrapper>
                 ))}
             </div>
         </QuestionWrapper>
@@ -38,6 +42,28 @@ const QuestionWrapper = styled.div`
     width: 80%;
     padding: 2rem;
     border-radius: 2rem;
+`;
+
+type ButtonWrapperProps = {
+    correct: boolean;
+    userClicked: boolean;
+}
+
+const ButtonWrapper = styled.div<ButtonWrapperProps>`
+    :hover{
+        opacity: 0.8;
+    }
+    button {
+        cursor: pointer;
+        user-select: none;
+        background: ${({correct, userClicked}) => 
+            correct
+                ? 'green' 
+                : !correct && userClicked 
+                ? 'red' 
+                : 'grey'
+        }
+    }
 `;
 
 export default QuestionCard;
